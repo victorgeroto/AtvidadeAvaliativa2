@@ -1,7 +1,6 @@
 package com.AtvAvaliativa.entity;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,12 +31,12 @@ public class Aluno {
 		
 		private String ra;
 		
-		private String renda;
+		private Double renda;
 		
 		private String telefone;
 		
-		@ManyToOne(fetch = FetchType.LAZY)
-		@JoinColumn(name = "id_turma", nullable = false)
+		@ManyToOne
+		@JoinColumn(name = "id_turma")
 		private Turma turma;
 
 

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.AtvAvaliativa.entity.Aluno;
 import com.AtvAvaliativa.entity.Turma;
 import com.AtvAvaliativa.repository.TurmaRepository;
 
@@ -24,6 +26,18 @@ private final TurmaRepository turmaRepository;
 	    public Turma getTurmaById(Long id) {
 	        Optional<Turma> turma = turmaRepository.findById(id);
 	        return turma.orElse(null);
+	    }
+	  //Query Method
+	    public List<Turma> buscarTurmasPorNome(String nome){
+	    	return turmaRepository.findByNome(nome);
+	    }
+	  //Query Method
+	    public List<Turma> buscarTurmasPorDescricao(String descricao){
+	    	return turmaRepository.findByDescricao(descricao);
+	    }
+	  //Query Method
+	    public List<Turma> buscarTurmasPorNomeAndDescricao(String nome, String descricao){
+	    	return turmaRepository.findByNomeAndDescricao(nome,descricao);
 	    }
 
 	    public Turma salvarTurma(Turma turma) {

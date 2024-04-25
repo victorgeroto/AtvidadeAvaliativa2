@@ -3,6 +3,7 @@ package com.AtvAvaliativa.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,6 +44,40 @@ public class AlunoController {
 	public ResponseEntity<List<Aluno>> getAllAluno() {
 		List<Aluno> aluno = alunoService.getAllAluno();
 		return ResponseEntity.ok(aluno);
+	}
+	//Query Method
+	@GetMapping("/cidade/{cidade}")
+	public ResponseEntity<List<Aluno>> buscarAlunosPorCidade(@PathVariable String cidade){
+		List<Aluno> alunos = alunoService.buscarAlunosPorCidade (cidade);
+		return ResponseEntity.ok(alunos);
+	}
+	/*//Query Method
+		@GetMapping("/nome/{nome}")
+		public ResponseEntity<List<Aluno>> buscarAlunosPorNome(@PathVariable String nome){
+			List<Aluno> alunos = alunoService.buscarAlunosPorNome (nome);
+			return ResponseEntity.ok(alunos);
+	}*/
+	//Query Method
+		@GetMapping("/cidade/{cidade}/renda/{renda}")
+		public ResponseEntity<List<Aluno>> buscarAlunosPorCidadeAndRenda(@PathVariable String cidade, Double renda){
+			List<Aluno> alunos = alunoService.buscarAlunosPorCidadeAndRenda (cidade, renda);
+			return ResponseEntity.ok(alunos);
+	}
+	//Query Method
+		@GetMapping("/ra/{ra}")
+		public ResponseEntity<List<Aluno>> buscarAlunosPorRa(@PathVariable String ra){
+			List<Aluno> alunos = alunoService.buscarAlunosPorRa (ra);
+			return ResponseEntity.ok(alunos);
+	}
+	@Query
+		@GetMapping("/nome/{nome}")
+		public List<Aluno> findAlunoPorNome(@PathVariable String nome){
+			return alunoService.findByNome(nome);
+	}
+	//@query
+	@GetMapping("/nome-completo/{nomeCompleto}")
+	public  List<Aluno> findAlunosPorNomeCompletoLike(@PathVariable String nomeCompleto){
+		return alunoService.findByNomeCompletoLike(nomeCompleto);
 	}
 
 	@PostMapping("/")

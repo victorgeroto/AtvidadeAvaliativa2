@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.AtvAvaliativa.entity.Aluno;
 import com.AtvAvaliativa.entity.Turma;
 import com.AtvAvaliativa.service.TurmaService;
 
@@ -43,6 +44,24 @@ public class TurmaController {
 	public ResponseEntity<List<Turma>> getAllTurma() {
 		List<Turma> turma = turmaService.getAllTurma();
 		return ResponseEntity.ok(turma);
+	}
+	//Query Method
+		@GetMapping("/nome/{nome}")
+		public ResponseEntity<List<Turma>> buscarTurmasPorNome(@PathVariable String nome){
+			List<Turma> turmas = turmaService.buscarTurmasPorNome (nome);
+			return ResponseEntity.ok(turmas);
+	}
+	//Query Method
+			@GetMapping("/descricao/{descricao}")
+			public ResponseEntity<List<Turma>> buscarTurmasPorDescricao(@PathVariable String descricao){
+				List<Turma> turmas = turmaService.buscarTurmasPorDescricao (descricao);
+				return ResponseEntity.ok(turmas);
+	}
+	//Query Method
+		@GetMapping("/nome/{nome}/descricao/{descricao}")
+		public ResponseEntity<List<Turma>> buscarTurmasPorNomeAndDescricao(@PathVariable String nome, String descricao){
+			List<Turma> turmas = turmaService.buscarTurmasPorNomeAndDescricao (nome, descricao);
+			return ResponseEntity.ok(turmas);
 	}
 
 	@PostMapping("/")
